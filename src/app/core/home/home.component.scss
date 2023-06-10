@@ -8,6 +8,7 @@
 
     .blog-card {
       margin: 0.625rem;
+      width: 400px;
 
       .card-title {
         min-height: 4rem;
@@ -32,19 +33,11 @@
     .blog-container {
       width: 400px;
     }
-
-    .blog-card {
-      width: 400px;
-    }
   }
 
   @media screen and (min-width: 841px) {
     .blog-container {
       width: 840px;
-    }
-
-    .blog-card {
-      width: 400px;
     }
   }
 
@@ -52,19 +45,11 @@
     .blog-container {
       width: 1260px;
     }
-
-    .blog-card {
-      width: 400px;
-    }
   }
 
   @media screen and (min-width: 1681px) {
     .blog-container {
       width: 1680px;
-    }
-
-    .blog-card {
-      width: 400px;
     }
   }
 }
