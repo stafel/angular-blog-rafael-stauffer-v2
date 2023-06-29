@@ -1,4 +1,4 @@
-<ng-container *ngIf="blogs$ | async; let blogs">
+<ng-container *ngIf="blogs">
   <div class="blog-container">
     <app-blog-overview-card
       *ngFor="let blog of blogs; let i = index"

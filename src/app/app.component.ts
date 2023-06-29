@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { LoadingService } from './core/loading-service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'blog-frog-16';
+
+  isLoading$: Observable<boolean>;
+
+  constructor(private loadingService: LoadingService) {
+    this.isLoading$ = this.loadingService.state$;
+  }
 }

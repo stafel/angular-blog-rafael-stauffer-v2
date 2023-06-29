@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { BlogDataService } from '../../core/blog-data.service';
+import { Component, Input } from '@angular/core';
 import { Blog } from '../../shared/blog-overview-card/blog-overview-card.component';
 
 @Component({
@@ -9,9 +7,5 @@ import { Blog } from '../../shared/blog-overview-card/blog-overview-card.compone
   styleUrls: ['./blog-overview-page.component.scss'],
 })
 export class BlogOverviewPageComponent {
-  blogs$: Observable<Blog[]>;
-
-  constructor(private blogService: BlogDataService) {
-    this.blogs$ = this.blogService.getBlogPosts() as Observable<Blog[]>;
-  }
+  @Input() blogs!: Blog[];
 }

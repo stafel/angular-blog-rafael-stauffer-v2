@@ -1,4 +1,6 @@
-<div>
-  <app-header></app-header>
-  <router-outlet></router-outlet>
-</div>
+<ng-container *ngIf="isLoading$ | async; then isLoading"></ng-container>
+<ng-template #isLoading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+<app-header></app-header>
+<router-outlet></router-outlet>

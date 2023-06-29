@@ -1,10 +1,17 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import {
+  ResolveFn,
   RouterModule,
   Routes,
   provideRouter,
   withComponentInputBinding,
 } from '@angular/router';
+import { Blog, BlogDataService } from './core/blog-data.service';
+import { ErrorPageComponent } from './core/static/error-page.component';
+import { PageNotFoundPageComponent } from './core/static/page-not-found-page.component';
+
+export const blogResolver: ResolveFn<Blog[]> = () =>
+  inject(BlogDataService).getBlogPosts();
 
 const routes: Routes = [
   {
@@ -18,6 +25,7 @@ const routes: Routes = [
       import('./features/blog-overview-page/blog-overview-page.module').then(
         (m) => m.BlogOverviewPageModule
       ),
+    resolve: { blogs: blogResolver },
   },
   {
     path: 'detail',
@@ -26,6 +34,11 @@ const routes: Routes = [
         (m) => m.BlogDetailPageModule
       ),
   },
+  {
+    path: 'error',
+    component: ErrorPageComponent,
+  },
+  { path: '**', component: PageNotFoundPageComponent },
 ];
 
 @NgModule({
