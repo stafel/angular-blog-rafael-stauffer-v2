@@ -28,7 +28,6 @@ import { GlobalErrorHandler } from './core/error/global-error-handler.service';
     MatToolbarModule,
     MatIconModule,
     MatProgressBarModule,
-    BlogOverviewPageModule,
   ],
   providers: [
     {
