@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, filter, tap } from 'rxjs';
 import { LoadingService } from './core/loading-service';
+import { LoginResponse, OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,24 @@ export class AppComponent {
   title = 'blog-frog-16';
 
   isLoading$: Observable<boolean>;
+  loginResponse$: Observable<LoginResponse>;
 
-  constructor(private loadingService: LoadingService) {
+  constructor(
+    private loadingService: LoadingService,
+    private oidcSecurityService: OidcSecurityService
+  ) {
     this.isLoading$ = this.loadingService.state$;
+
+    this.loginResponse$ = oidcSecurityService.checkAuth().pipe(
+      filter((loginRespose) => !!loginRespose),
+      tap((x) => console.log(x))
+    );
+  }
+
+  login() {
+    this.oidcSecurityService.authorize();
+  }
+  logout() {
+    this.oidcSecurityService.logoff().subscribe((x) => console.log(x));
   }
 }
