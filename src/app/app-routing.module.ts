@@ -9,6 +9,7 @@ import {
 import { Blog, BlogDataService } from './core/blog-data.service';
 import { ErrorPageComponent } from './core/static/error-page.component';
 import { PageNotFoundPageComponent } from './core/static/page-not-found-page.component';
+import { authenticationGuard } from './core/auth/authentication.guard';
 
 export const blogResolver: ResolveFn<Blog[]> = () =>
   inject(BlogDataService).getBlogPosts();
@@ -33,6 +34,14 @@ const routes: Routes = [
       import('./features/blog-detail-page/blog-detail-page.module').then(
         (m) => m.BlogDetailPageModule
       ),
+  },
+  {
+    path: 'add-blog',
+    loadChildren: () =>
+      import('./features/add-blog-page/add-blog-page.module').then(
+        (m) => m.AddBlogPageModule
+      ),
+    canActivate: [authenticationGuard],
   },
   {
     path: 'error',

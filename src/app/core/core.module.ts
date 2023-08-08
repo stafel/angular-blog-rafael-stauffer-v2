@@ -9,11 +9,13 @@ import { HeaderComponent } from './header/header.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [HeaderComponent],
   imports: [
     CommonModule,
+    RouterModule,
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
