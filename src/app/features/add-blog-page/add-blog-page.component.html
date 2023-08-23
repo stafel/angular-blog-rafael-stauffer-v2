@@ -1,1 +1,23 @@
 <p>add-blog-page works!</p>
+
+<label for="title">Title: </label>
+<input id="title" type="text" [formControl]="title" />
+
+<label for="text">Blog text: </label>
+<input id="text" type="text" [formControl]="text" />
+
+<input
+  type="button"
+  *ngIf="!title.invalid && !text.invalid"
+  id="publish"
+  value="Publish blog"
+/>
+<input type="button" id="reset" value="Reset" (click)="(resetForm)" />
+
+<div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert">
+  <div *ngIf="title.errors?.['required']">Title is required</div>
+</div>
+
+<div *ngIf="text.invalid && (text.dirty || text.touched)" class="alert">
+  <div *ngIf="text.errors?.['required']">Text is required</div>
+</div>
